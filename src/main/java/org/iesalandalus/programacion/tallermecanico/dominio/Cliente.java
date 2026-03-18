@@ -1,6 +1,7 @@
 package org.iesalandalus.programacion.tallermecanico.dominio;
 
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 public class Cliente {
     private static final String ER_NOMBRE = "\\d{9}";
@@ -29,7 +30,11 @@ public class Cliente {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        if (Pattern.matches(ER_NOMBRE, nombre)) {
+            this.nombre = nombre;
+        } else {
+            throw new IllegalArgumentException("El nombre no es válido");
+        }
     }
 
     public String getDni() {
@@ -37,7 +42,11 @@ public class Cliente {
     }
 
     public void setDni(String dni) {
-        this.dni = dni;
+        if (Pattern.matches(ER_DNI, dni)) {
+            this.dni = dni;
+        } else {
+            throw new IllegalArgumentException("El dni no es válido");
+        }
     }
 
     public String getTelefono() {
@@ -45,7 +54,11 @@ public class Cliente {
     }
 
     public void setTelefono(String telefono) {
-        this.telefono = telefono;
+        if (Pattern.matches(ER_TELEFONO, telefono)) {
+            this.telefono = telefono;
+        } else {
+            throw new IllegalArgumentException("El teléfono no es válido");
+        }
     }
 
     public static Cliente get(String dni) {
