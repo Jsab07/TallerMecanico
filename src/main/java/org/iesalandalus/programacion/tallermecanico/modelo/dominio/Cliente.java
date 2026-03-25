@@ -104,13 +104,9 @@ public class Cliente {
 
 
         Cliente cliente = new Cliente("Patricio Estrella", dniTrimmed, "950111111");
-
-
         if (!cliente.comprobarLetraDni(dniTrimmed)) {
             throw new IllegalArgumentException("La letra del DNI no es correcta.");
         }
-
-
         return cliente;
     }
 
