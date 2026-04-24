@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8b0e04e-6981-41d9-b2bd-c9ae382a0816" name="Changes" comment="Errata en el enunciado y en el diagrama.">
+    <list default="true" id="f8b0e04e-6981-41d9-b2bd-c9ae382a0816" name="Changes" comment="Merge branch 'refactorizacion_herencia' into sprint_inicial&#10;&#10;# Conflicts:&#10;#&#9;src/main/java/org/iesalandalus/programacion/tallermecanico/Main.java&#10;#&#9;src/main/resources/uml/MiEstilo.css&#10;#&#9;src/main/resources/uml/tallerMecanico.jpg&#10;#&#9;src/main/resources/uml/tallerMecanico.notation&#10;#&#9;src/main/resources/uml/tallerMecanico.uml&#10;#&#9;src/main/resources/uml/tallerMecanico_es_ES.properties&#10;#&#9;src/test/java/org/iesalandalus/programacion/tallermecanico/modelo/ModeloTest.java&#10;#&#9;src/test/java/org/iesalandalus/programacion/tallermecanico/modelo/dominio/RevisionTest.java&#10;#&#9;src/test/java/org/iesalandalus/programacion/tallermecanico/modelo/negocio/ClientesTest.java&#10;#&#9;src/test/java/org/iesalandalus/programacion/tallermecanico/modelo/negocio/VehiculosTest.java">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +55,14 @@
       </list>
     </option>
   </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="refactorizacion_herencia" />
+    <option name="OPTIONS">
+      <set>
+        <option value="ALLOW_UNRELATED_HISTORIES" />
+      </set>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
@@ -82,7 +90,6 @@
   &quot;associatedIndex&quot;: 8
 }</component>
   <component name="ProjectId" id="2b7VdNJDYYb9khOs32YlvwYhqd1" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -107,7 +114,7 @@
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "refactorizacion__herencia",
+    "git-widget-placeholder": "sprint__inicial",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/home/pepino/Desarrollos/java/IntelliJ/Copias-TallerMecanico/TallerMecanico",
     "project.structure.last.edited": "Project",
@@ -151,8 +158,11 @@
       </ExternalSystemSettings>
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
       <DebugAllEnabled>false</DebugAllEnabled>
       <RunAsTest>true</RunAsTest>
+      <GradleProfilingDisabled>false</GradleProfilingDisabled>
+      <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
     <configuration name="ModeloTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">

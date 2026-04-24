@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
-public class Revision {
+public class Trabajo {
     private static final float PRECIO_HORA = 30;
     private static final float PRECIO_DIA = 10;
     private static final float PRECIO_MATERIAL = 1.5F;
@@ -18,7 +18,7 @@ public class Revision {
     private float precioMaterial;
     private Vehiculo vehiculo;
     private Cliente cliente;
-    public Revision(Cliente cliente, Vehiculo vehiculo, LocalDate fechaInicio) {
+    public Trabajo(Cliente cliente, Vehiculo vehiculo, LocalDate fechaInicio) {
         setCliente(cliente);
         setVehiculo(vehiculo);
         setFechaInicio(fechaInicio);
@@ -27,7 +27,7 @@ public class Revision {
         this.fechaFin = null;
     }
 
-    public Revision(Revision revision) {
+    public Trabajo(Trabajo revision) {
         Objects.requireNonNull(revision, "La revisión no puede ser nula.");
         fechaFin = revision.fechaFin;
         fechaInicio = revision.fechaInicio;
@@ -145,7 +145,7 @@ public class Revision {
     public boolean equals (Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Revision revision = (Revision) o;
+        Trabajo revision = (Trabajo) o;
         return horas == revision.horas && Objects.equals(fechaInicio, revision.fechaInicio) && Objects.equals(vehiculo, revision.vehiculo) && Objects.equals(cliente, revision.cliente);
     }
 
@@ -158,12 +158,12 @@ public class Revision {
         if(!estaCerrada()) {
             return String.format("%s - %s: (%s - ), %d horas, %.2f € en material",
                     this.cliente.toString(), this.vehiculo.toString(),
-                    fechaInicio.format(Revision.FORMATO_FECHA), getHoras(), getPrecioMaterial());
+                    fechaInicio.format(Trabajo.FORMATO_FECHA), getHoras(), getPrecioMaterial());
         }
         return String.format("%s - %s: (%s - %s), %d horas, %.2f € en material, %.2f € total",
                 this.cliente.toString(), this.vehiculo.toString(),
-                fechaInicio.format(Revision.FORMATO_FECHA),
-                fechaFin.format(Revision.FORMATO_FECHA), getHoras(),
+                fechaInicio.format(Trabajo.FORMATO_FECHA),
+                fechaFin.format(Trabajo.FORMATO_FECHA), getHoras(),
                 getPrecioMaterial(), getPrecio());
     }
 }

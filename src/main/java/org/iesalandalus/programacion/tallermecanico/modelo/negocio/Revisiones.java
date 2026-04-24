@@ -2,7 +2,7 @@ package org.iesalandalus.programacion.tallermecanico.modelo.negocio;
 
 import org.iesalandalus.programacion.tallermecanico.modelo.TallerMecanicoExcepcion;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Cliente;
-import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Revision;
+import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Trabajo;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Vehiculo;
 
 import java.time.LocalDate;
@@ -10,19 +10,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Revisiones {
-    private final List<Revision> coleccionRevisiones;
+    private final List<Trabajo> coleccionRevisiones;
 
     public Revisiones() {
         coleccionRevisiones = new ArrayList<>();
     }
 
-    public ArrayList<Revision> get() {
+    public ArrayList<Trabajo> get() {
         return new ArrayList<>(coleccionRevisiones);
     }
 
-    public List<Revision> get(Cliente cliente) {
-        List<Revision> revisionesCliente = new ArrayList<>();
-        for (Revision r : coleccionRevisiones) {
+    public List<Trabajo> get(Cliente cliente) {
+        List<Trabajo> revisionesCliente = new ArrayList<>();
+        for (Trabajo r : coleccionRevisiones) {
             if (r.getCliente().equals(cliente)) {
                 revisionesCliente.add(r);
             }
@@ -30,9 +30,9 @@ public class Revisiones {
         return revisionesCliente;
     }
 
-    public List<Revision> get(Vehiculo vehiculo) {
-        List<Revision> revisionesVehiculo = new ArrayList<>();
-        for (Revision r : coleccionRevisiones) {
+    public List<Trabajo> get(Vehiculo vehiculo) {
+        List<Trabajo> revisionesVehiculo = new ArrayList<>();
+        for (Trabajo r : coleccionRevisiones) {
             if (r.getVehiculo().equals(vehiculo)) {
                 revisionesVehiculo.add(r);
             }
@@ -40,12 +40,12 @@ public class Revisiones {
         return revisionesVehiculo;
     }
 
-    public void insertar(Revision revision) throws TallerMecanicoExcepcion {
+    public void insertar(Trabajo revision) throws TallerMecanicoExcepcion {
         if (revision == null) {
             throw new NullPointerException("No se puede insertar una revisión nula.");
         }
         comprobarRevision(revision.getCliente(), revision.getVehiculo(), revision.getFechaInicio());
-        Revision revisionExistente = buscar(revision);
+        Trabajo revisionExistente = buscar(revision);
         if (revisionExistente != null) {
             if (!revisionExistente.estaCerrada()) {
                 throw new TallerMecanicoExcepcion("Ya existe una revisión igual.");
@@ -57,7 +57,7 @@ public class Revisiones {
     }
 
     private void comprobarRevision(Cliente cliente, Vehiculo vehiculo, LocalDate fechaRevision) throws TallerMecanicoExcepcion {
-        for (Revision r : coleccionRevisiones) {
+        for (Trabajo r : coleccionRevisiones) {
             if (!r.estaCerrada()) {
                 if (r.getCliente().equals(cliente)) {
                     throw new TallerMecanicoExcepcion("El cliente tiene otra revisión en curso.");
@@ -77,40 +77,40 @@ public class Revisiones {
         }
     }
 
-    private Revision getRevision(Revision revision) throws TallerMecanicoExcepcion {
+    private Trabajo getRevision(Trabajo revision) throws TallerMecanicoExcepcion {
         if (revision == null) {
             throw new NullPointerException("No puedo operar sobre una revisión nula.");
         }
-        Revision revisionExistente = buscar(revision);
+        Trabajo revisionExistente = buscar(revision);
         if (revisionExistente == null) {
             throw new TallerMecanicoExcepcion("No existe ninguna revisión igual.");
         }
         return revisionExistente;
     }
 
-    public Revision anadirHoras(Revision revision, int horas) throws TallerMecanicoExcepcion {
-        Revision revision1 = getRevision(revision);
+    public Trabajo anadirHoras(Trabajo revision, int horas) throws TallerMecanicoExcepcion {
+        Trabajo revision1 = getRevision(revision);
         revision1.anadirHoras(horas);
         return revision1;
     }
 
-    public Revision anadirPrecioMaterial(Revision revision, float precioMaterial) throws TallerMecanicoExcepcion {
-        Revision revision1 = getRevision(revision);
+    public Trabajo anadirPrecioMaterial(Trabajo revision, float precioMaterial) throws TallerMecanicoExcepcion {
+        Trabajo revision1 = getRevision(revision);
         revision1.anadirPrecioMaterial(precioMaterial);
         return revision1;
     }
 
-    public Revision cerrar(Revision revision, LocalDate fechaFin) throws TallerMecanicoExcepcion {
-        Revision revision1 = getRevision(revision);
+    public Trabajo cerrar(Trabajo revision, LocalDate fechaFin) throws TallerMecanicoExcepcion {
+        Trabajo revision1 = getRevision(revision);
         revision1.cerrar(fechaFin);
         return revision1;
     }
 
-    public Revision buscar(Revision revision) {
+    public Trabajo buscar(Trabajo revision) {
         if (revision == null) {
             throw new NullPointerException("No se puede buscar una revisión nula.");
         }
-        for (Revision r : coleccionRevisiones) {
+        for (Trabajo r : coleccionRevisiones) {
             if (r.equals(revision)) {
                 return r;
             }
@@ -118,11 +118,11 @@ public class Revisiones {
         return null;
     }
 
-    public void borrar(Revision revision) throws TallerMecanicoExcepcion {
+    public void borrar(Trabajo revision) throws TallerMecanicoExcepcion {
         if (revision == null) {
             throw new NullPointerException("No se puede borrar una revisión nula.");
         }
-        Revision revisionExistente = buscar(revision);
+        Trabajo revisionExistente = buscar(revision);
         if (revisionExistente == null) {
             throw new TallerMecanicoExcepcion("No existe ninguna revisión igual.");
         }

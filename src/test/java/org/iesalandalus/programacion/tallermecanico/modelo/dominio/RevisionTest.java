@@ -22,7 +22,7 @@ class RevisionTest {
     private static LocalDate manana;
     private static LocalDate semanaPasada;
 
-    private Revision revision;
+    private Trabajo revision;
 
     private MockedConstruction<Cliente> controladorCreacionMockCliente;
 
@@ -38,7 +38,7 @@ class RevisionTest {
     void init() {
         creaComportamientoCliente();
         creaComportamientoVehiculo();
-        revision = new Revision(cliente, vehiculo, ayer);
+        revision = new Trabajo(cliente, vehiculo, ayer);
     }
 
     @AfterEach
@@ -71,31 +71,31 @@ class RevisionTest {
         assertNull(revision.getFechaFin());
         assertEquals(0, revision.getHoras());
         assertEquals(0, revision.getPrecio());
-        Revision revisonSemanaPasada = new Revision(cliente, vehiculo, semanaPasada);
+        Trabajo revisonSemanaPasada = new Trabajo(cliente, vehiculo, semanaPasada);
         assertEquals(semanaPasada, revisonSemanaPasada.getFechaInicio());
     }
 
     @Test
     void constructorClienteNuloVehiculoValidoFechaInicioValidaLanzaExcepcion() {
-        NullPointerException npe = assertThrows(NullPointerException.class, () -> new Revision(null, vehiculo, hoy));
+        NullPointerException npe = assertThrows(NullPointerException.class, () -> new Trabajo(null, vehiculo, hoy));
         assertEquals("El cliente no puede ser nulo.", npe.getMessage());
     }
 
     @Test
     void constructorClienteValidoVehiculoNuloFechaInicioValidaLanzaExcepcion() {
-        NullPointerException npe = assertThrows(NullPointerException.class, () -> new Revision(cliente, null, hoy));
+        NullPointerException npe = assertThrows(NullPointerException.class, () -> new Trabajo(cliente, null, hoy));
         assertEquals("El vehículo no puede ser nulo.", npe.getMessage());
     }
 
     @Test
     void constructorClienteValidoVehiculoValidoFechaInicioNulaLanzaExcepcion() {
-        NullPointerException npe = assertThrows(NullPointerException.class, () -> new Revision(cliente, vehiculo, null));
+        NullPointerException npe = assertThrows(NullPointerException.class, () -> new Trabajo(cliente, vehiculo, null));
         assertEquals("La fecha de inicio no puede ser nula.", npe.getMessage());
     }
 
     @Test
     void constructorClienteValidoVehiculoValidoFechaInicioNoValidaLanzaExcepcion() {
-        IllegalArgumentException iae = assertThrows(IllegalArgumentException.class, () -> new Revision(cliente, vehiculo, manana));
+        IllegalArgumentException iae = assertThrows(IllegalArgumentException.class, () -> new Trabajo(cliente, vehiculo, manana));
         assertEquals("La fecha de inicio no puede ser futura.", iae.getMessage());
     }
 
@@ -103,7 +103,7 @@ class RevisionTest {
     void constructorRevisionValidaCopiaRevisionCorrectamente() {
         assertDoesNotThrow(() -> revision.anadirHoras(5));
         assertDoesNotThrow(() -> revision.cerrar(hoy));
-        Revision revisionCopia = new Revision(revision);
+        Trabajo revisionCopia = new Trabajo(revision);
         assertNotSame(cliente, revisionCopia.getCliente());
         assertSame(vehiculo, revisionCopia.getVehiculo());
         assertEquals(ayer, revisionCopia.getFechaInicio());
@@ -113,7 +113,7 @@ class RevisionTest {
 
     @Test
     void constructorRevisionNulaLanzaExcepcion() {
-        NullPointerException npe = assertThrows(NullPointerException.class, () -> new Revision(null));
+        NullPointerException npe = assertThrows(NullPointerException.class, () -> new Trabajo(null));
         assertEquals("El trabajo no puede ser nulo.", npe.getMessage());
     }
 
@@ -122,7 +122,7 @@ class RevisionTest {
             "0, 5, 175.0", "1, 5, 185.0", "5, 5, 225.0", "0, 10, 350.0", "1, 10, 360.0", "5, 10, 400.0",
             "0, 10, 350.0", "1, 10, 360.0", "5, 10, 400.0"})
     void getPrecioCalculaCorrectamentePrecio(int dias, int horas, float precio) {
-        Revision revisonSemanaPasada = new Revision(cliente, vehiculo, semanaPasada);
+        Trabajo revisonSemanaPasada = new Trabajo(cliente, vehiculo, semanaPasada);
         assertDoesNotThrow(() -> revisonSemanaPasada.anadirHoras(horas));
         LocalDate fechaFin = semanaPasada.plusDays(dias);
         assertDoesNotThrow(() -> revisonSemanaPasada.cerrar(fechaFin));

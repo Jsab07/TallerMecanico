@@ -3,7 +3,7 @@ package org.iesalandalus.programacion.tallermecanico.vista;
 import org.iesalandalus.programacion.tallermecanico.Controlador.Controlador;
 import org.iesalandalus.programacion.tallermecanico.modelo.TallerMecanicoExcepcion;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Cliente;
-import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Revision;
+import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Trabajo;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Vehiculo;
 
 import java.util.List;
@@ -90,7 +90,7 @@ public class Vista {
 
     private void buscarRevision () {
         Consola.mostrarCabecera("Buscar Revision");
-        Revision revision = controlador.buscar(Consola.leerRevision());
+        Trabajo revision = controlador.buscar(Consola.leerRevision());
         System.out.println((revision != null) ? "Revision: " + revision : "No existe ninguna revision para ese cliente.");
     }
 
@@ -162,9 +162,9 @@ public class Vista {
 
     private void listarRevisiones() {
         Consola.mostrarCabecera( "Listar Revisiones");
-        List<Revision> revisiones = controlador.getRevisiones();
+        List<Trabajo> revisiones = controlador.getRevisiones();
         if (!revisiones.isEmpty()) {
-            for (Revision revision : revisiones) {
+            for (Trabajo revision : revisiones) {
                 System.out.println(revision);
             }
         } else {
@@ -174,9 +174,9 @@ public class Vista {
 
     private void listarRevisionesCliente() {
         Consola.mostrarCabecera("Listar Revisiones Cliente");
-        List<Revision> revisionesCliente = controlador.getRevisiones(Consola.leerClienteDni());
+        List<Trabajo> revisionesCliente = controlador.getRevisiones(Consola.leerClienteDni());
         if (!revisionesCliente.isEmpty()) {
-            for (Revision revision : revisionesCliente) {
+            for (Trabajo revision : revisionesCliente) {
                 System.out.println(revision);
             }
         } else {
@@ -186,9 +186,9 @@ public class Vista {
 
     private void listarRevisionesVehiculo() {
         Consola.mostrarCabecera("Listar Revisiones Vehiculo");
-        List<Revision> revisionesVehiculo = controlador.getRevisiones(Consola.leerVehiculoMatricula());
+        List<Trabajo> revisionesVehiculo = controlador.getRevisiones(Consola.leerVehiculoMatricula());
         if (!revisionesVehiculo.isEmpty()) {
-            for (Revision revision : revisionesVehiculo) {
+            for (Trabajo revision : revisionesVehiculo) {
                 System.out.println(revision);
             }
         } else {

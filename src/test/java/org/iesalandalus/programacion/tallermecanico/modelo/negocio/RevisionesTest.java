@@ -2,7 +2,7 @@ package org.iesalandalus.programacion.tallermecanico.modelo.negocio;
 
 import org.iesalandalus.programacion.tallermecanico.modelo.TallerMecanicoExcepcion;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Cliente;
-import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Revision;
+import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Trabajo;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Vehiculo;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,9 +17,9 @@ import static org.mockito.Mockito.when;
 
 class RevisionesTest {
 
-    private static Revision revision1;
-    private static Revision revision2;
-    private static Revision revision3;
+    private static Trabajo revision1;
+    private static Trabajo revision2;
+    private static Trabajo revision3;
     private static Cliente cliente1;
     private static Cliente cliente2;
     private static Vehiculo vehiculo1;
@@ -75,7 +75,7 @@ class RevisionesTest {
         when(revision1.getFechaFin()).thenReturn(anteayer);
         when(revision1.estaCerrada()).thenReturn(true);
         assertDoesNotThrow(() -> revisiones.insertar(revision3));
-        List<Revision> copiaRevisiones = revisiones.get();
+        List<Trabajo> copiaRevisiones = revisiones.get();
         assertEquals(2, copiaRevisiones.size());
         assertEquals(revision1, copiaRevisiones.get(0));
         assertSame(revision1, copiaRevisiones.get(0));
@@ -90,7 +90,7 @@ class RevisionesTest {
         when(revision1.estaCerrada()).thenReturn(true);
         assertDoesNotThrow(() -> revisiones.insertar(revision2));
         assertDoesNotThrow(() -> revisiones.insertar(revision3));
-        List<Revision> revisionesCliente = revisiones.get(cliente1);
+        List<Trabajo> revisionesCliente = revisiones.get(cliente1);
         assertEquals(2, revisionesCliente.size());
         assertEquals(revision1, revisionesCliente.get(0));
         assertSame(revision1, revisionesCliente.get(0));
@@ -105,7 +105,7 @@ class RevisionesTest {
         when(revision1.estaCerrada()).thenReturn(true);
         assertDoesNotThrow(() -> revisiones.insertar(revision2));
         assertDoesNotThrow(() -> revisiones.insertar(revision3));
-        List<Revision> revisionesVehiculo = revisiones.get(vehiculo1);
+        List<Trabajo> revisionesVehiculo = revisiones.get(vehiculo1);
         assertEquals(2, revisionesVehiculo.size());
         assertEquals(revision1, revisionesVehiculo.get(0));
         assertSame(revision1, revisionesVehiculo.get(0));
@@ -173,7 +173,7 @@ class RevisionesTest {
         assertDoesNotThrow(() -> revisiones.insertar(revision1));
         assertDoesNotThrow(() -> revisiones.anadirHoras(revision1, 10));
         when(revision1.getHoras()).thenReturn(10);
-        Revision revision = revisiones.buscar(revision1);
+        Trabajo revision = revisiones.buscar(revision1);
         assertEquals(10, revision.getHoras());
     }
 
@@ -195,7 +195,7 @@ class RevisionesTest {
         assertDoesNotThrow(() -> revisiones.insertar(revision1));
         assertDoesNotThrow(() -> revisiones.anadirPrecioMaterial(revision1, 100f));
         when(revision1.getPrecioMaterial()).thenReturn(100f);
-        Revision revision = revisiones.buscar(revision1);
+        Trabajo revision = revisiones.buscar(revision1);
         assertEquals(100f, revision.getPrecioMaterial());
     }
 
@@ -217,7 +217,7 @@ class RevisionesTest {
         assertDoesNotThrow(() -> revisiones.insertar(revision1));
         assertDoesNotThrow(() -> revisiones.anadirPrecioMaterial(revision1, 100f));
         when(revision1.getPrecioMaterial()).thenReturn(100f);
-        Revision revision = revisiones.buscar(revision1);
+        Trabajo revision = revisiones.buscar(revision1);
         assertEquals(100f, revision.getPrecioMaterial());
     }
 
@@ -239,7 +239,7 @@ class RevisionesTest {
         assertDoesNotThrow(() -> revisiones.insertar(revision1));
         assertDoesNotThrow(() -> revisiones.cerrar(revision1, ayer));
         when(revision1.getFechaFin()).thenReturn(ayer);
-        Revision revision = revisiones.buscar(revision1);
+        Trabajo revision = revisiones.buscar(revision1);
         assertEquals(ayer, revision.getFechaFin());
     }
 
